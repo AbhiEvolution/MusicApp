@@ -1,0 +1,41 @@
+<div class="row">
+  <% @musicalbums.each do |album| %>
+    <div class="col-md-4">
+      <div class="card">
+      	 <div class="card-header">
+          <%= link_to music_album_path(album),method: :delete, data: { confirm: "Are you sure?" } do   %>
+            <i class="fas fa-times right"></i>
+          <%end %>
+          <%= link_to edit_music_album_path(album)do   %>
+            <i class="fas fa-edit green"></i>
+          <%end %>
+        </div>
+        <div class="card-body">
+          <% if album.cover_image.attached? %>
+            <%= link_to album,class:"link" do%>
+              <%=image_tag(album.cover_image,class: "card-top-img img-fluid") %>
+            <%end%> <%end%>
+        </div>
+
+          <div class="card-footer">
+            <span>
+              <strong>Name:</strong>
+              <%=album.name%>
+            </span>
+            <span class="pl">
+              <strong>Description:</strong>
+              <%=album.description%>
+            </span>
+          </div>
+          <div class="card-footer">
+            <span>
+              <strong>Price:</strong>	
+              <%= album.price%>
+            </span>
+          </div>
+
+      </div>
+    </div>
+  <%end%>
+</div>
+<%=link_to "New Music Album", new_music_album_path%>
